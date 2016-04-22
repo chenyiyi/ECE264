@@ -1,0 +1,108 @@
+==18628== Memcheck, a memory error detector
+==18628== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==18628== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==18628== Command: ./a.out 24
+==18628== Parent PID: 18626
+==18628== 
+--18628-- 
+--18628-- Valgrind options:
+--18628--    --tool=memcheck
+--18628--    --leak-check=full
+--18628--    --verbose
+--18628--    --log-file=memcheck.log
+--18628-- Contents of /proc/version:
+--18628--   Linux version 2.6.32-431.29.2.el6.x86_64 (mockbuild@x86-026.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Jul 27 15:55:46 EDT 2014
+--18628-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--18628-- Page sizes: currently 4096, max supported 4096
+--18628-- Valgrind library directory: /usr/lib64/valgrind
+--18628-- Reading syms from /tmp/.0qDE4O/a.out
+--18628-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--18628--    object doesn't have a dynamic symbol table
+--18628-- Reading syms from /lib64/ld-2.12.so
+--18628--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--18628--   .. build-id is valid
+--18628-- Scheduler: using generic scheduler lock implementation.
+--18628-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==18628== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-18628-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==18628== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-18628-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==18628== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-18628-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==18628== 
+==18628== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==18628== don't want to do, unless you know exactly what you're doing,
+==18628== or are doing some strange experiment):
+==18628==   /usr/lib64/valgrind/../../bin/vgdb --pid=18628 ...command...
+==18628== 
+==18628== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==18628==   /path/to/gdb ./a.out
+==18628== and then give GDB the following command
+==18628==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=18628
+==18628== --pid is optional if only one valgrind process is running
+==18628== 
+--18628-- REDIR: 0x35ff417610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--18628-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--18628-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--18628-- REDIR: 0x35ff417480 (index) redirected to 0x4a07c30 (index)
+--18628-- REDIR: 0x35ff417500 (strcmp) redirected to 0x4a08570 (strcmp)
+--18628-- Reading syms from /lib64/libc-2.12.so
+--18628--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--18628--   .. build-id is valid
+--18628-- REDIR: 0x35ff884cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18628-- REDIR: 0x35ff886f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18628-- REDIR: 0x35ff882c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--18628-- REDIR: 0x35ff87a640 (malloc) redirected to 0x4a069ac (malloc)
+--18628-- REDIR: 0x35ff881160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--18628-- REDIR: 0x35ff889670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--18628-- REDIR: 0x35ff881120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18628-- REDIR: 0x35ff9336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--18628-- REDIR: 0x35ff884500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--18628-- REDIR: 0x35ff88aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--18628-- REDIR: 0x35ff87b520 (free) redirected to 0x4a063a9 (free)
+--18628-- REDIR: 0x35ff87f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--18628-- REDIR: 0x35ff928420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+==18628== 
+==18628== HEAP SUMMARY:
+==18628==     in use at exit: 60 bytes in 6 blocks
+==18628==   total heap usage: 17 allocs, 11 frees, 188 bytes allocated
+==18628== 
+==18628== Searching for pointers to 6 not-freed blocks
+==18628== Checked 64,568 bytes
+==18628== 
+==18628== 19 (16 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 4 of 6
+==18628==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==18628==    by 0x400BBD: List_createNode_sol (<stdin>:19)
+==18628==    by 0x400FFA: List_create (test_support_functions.c:48)
+==18628==    by 0x401017: List_create (test_support_functions.c:49)
+==18628==    by 0x401017: List_create (test_support_functions.c:49)
+==18628==    by 0x401253: make_list (test_support_functions.c:81)
+==18628==    by 0x401C46: tests_List_merge (test_List_merge.c:121)
+==18628==    by 0x402229: main (<stdin>:159)
+==18628== 
+==18628== 20 (16 direct, 4 indirect) bytes in 1 blocks are definitely lost in loss record 5 of 6
+==18628==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==18628==    by 0x400BBD: List_createNode_sol (<stdin>:19)
+==18628==    by 0x400FFA: List_create (test_support_functions.c:48)
+==18628==    by 0x401253: make_list (test_support_functions.c:81)
+==18628==    by 0x401C46: tests_List_merge (test_List_merge.c:121)
+==18628==    by 0x402229: main (<stdin>:159)
+==18628== 
+==18628== 21 (16 direct, 5 indirect) bytes in 1 blocks are definitely lost in loss record 6 of 6
+==18628==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==18628==    by 0x400BBD: List_createNode_sol (<stdin>:19)
+==18628==    by 0x400FFA: List_create (test_support_functions.c:48)
+==18628==    by 0x401269: make_list (test_support_functions.c:82)
+==18628==    by 0x401C39: tests_List_merge (test_List_merge.c:121)
+==18628==    by 0x402229: main (<stdin>:159)
+==18628== 
+==18628== LEAK SUMMARY:
+==18628==    definitely lost: 48 bytes in 3 blocks
+==18628==    indirectly lost: 12 bytes in 3 blocks
+==18628==      possibly lost: 0 bytes in 0 blocks
+==18628==    still reachable: 0 bytes in 0 blocks
+==18628==         suppressed: 0 bytes in 0 blocks
+==18628== 
+==18628== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 6 from 6)
+--18628-- 
+--18628-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--18628-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==18628== 
+==18628== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 6 from 6)

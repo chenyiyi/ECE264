@@ -1,0 +1,22 @@
+Breakpoint 1 at 0x400526: file pa02.c, line 24.
+Starting program: /home/shay/a/chen1234/ECE264/yi/PA02/pa02 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe528) at pa02.c:26
+26	    const char * s1 = "Hello World!";
+Missing separate debuginfos, use: debuginfo-install glibc-2.12-1.132.el6_5.4.x86_64
+Note: breakpoint 1 also set at pc 0x400526.
+Breakpoint 2 at 0x400526: file pa02.c, line 22.
+The program being debugged has been started already.
+Start it from the beginning? (y or n) 
+Starting program: /home/shay/a/chen1234/ECE264/yi/PA02/pa02 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe528) at pa02.c:26
+26	    const char * s1 = "Hello World!";
+A debugging session is active.
+
+	Inferior 1 [process 29757] will be killed.
+
+Quit anyway? (y or n) Not confirmed.
+Continuing.
+
+Program exited normally.

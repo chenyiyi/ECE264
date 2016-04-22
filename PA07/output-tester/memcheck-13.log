@@ -1,0 +1,76 @@
+==39243== Memcheck, a memory error detector
+==39243== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==39243== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==39243== Command: ./a.out images/04-nelsonmandela.ee264 student-out-13_04-nelsonmandela.bmp
+==39243== Parent PID: 39242
+==39243== 
+--39243-- 
+--39243-- Valgrind options:
+--39243--    --tool=memcheck
+--39243--    --leak-check=full
+--39243--    --verbose
+--39243--    --log-file=memcheck-13.log
+--39243-- Contents of /proc/version:
+--39243--   Linux version 2.6.32-431.29.2.el6.x86_64 (mockbuild@x86-026.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Jul 27 15:55:46 EDT 2014
+--39243-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--39243-- Page sizes: currently 4096, max supported 4096
+--39243-- Valgrind library directory: /usr/lib64/valgrind
+--39243-- Reading syms from /tmp/.0ljlsN/a.out
+--39243-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--39243--    object doesn't have a dynamic symbol table
+--39243-- Reading syms from /lib64/ld-2.12.so
+--39243--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--39243--   .. build-id is valid
+--39243-- Scheduler: using generic scheduler lock implementation.
+--39243-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==39243== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-39243-by-chen1234-on-ecegrid-thin4.ecn.purdue.edu
+==39243== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-39243-by-chen1234-on-ecegrid-thin4.ecn.purdue.edu
+==39243== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-39243-by-chen1234-on-ecegrid-thin4.ecn.purdue.edu
+==39243== 
+==39243== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==39243== don't want to do, unless you know exactly what you're doing,
+==39243== or are doing some strange experiment):
+==39243==   /usr/lib64/valgrind/../../bin/vgdb --pid=39243 ...command...
+==39243== 
+==39243== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==39243==   /path/to/gdb ./a.out
+==39243== and then give GDB the following command
+==39243==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=39243
+==39243== --pid is optional if only one valgrind process is running
+==39243== 
+--39243-- REDIR: 0x3350217610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--39243-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--39243-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--39243-- REDIR: 0x3350217480 (index) redirected to 0x4a07c30 (index)
+--39243-- REDIR: 0x3350217500 (strcmp) redirected to 0x4a08570 (strcmp)
+--39243-- Reading syms from /lib64/libc-2.12.so
+--39243--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--39243--   .. build-id is valid
+--39243-- REDIR: 0x3350684cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--39243-- REDIR: 0x3350686f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--39243-- REDIR: 0x3350682c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--39243-- REDIR: 0x335067f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--39243-- REDIR: 0x3350728420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--39243-- REDIR: 0x3350681120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--39243-- REDIR: 0x33507336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--39243-- REDIR: 0x335068aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--39243-- REDIR: 0x3350684500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--39243-- REDIR: 0x335067b520 (free) redirected to 0x4a063a9 (free)
+--39243-- REDIR: 0x335067a640 (malloc) redirected to 0x4a069ac (malloc)
+--39243-- REDIR: 0x3350689670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--39243-- REDIR: 0x3350681160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--39243-- REDIR: 0x33506839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--39243-- REDIR: 0x33506839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==39243== 
+==39243== HEAP SUMMARY:
+==39243==     in use at exit: 0 bytes in 0 blocks
+==39243==   total heap usage: 6 allocs, 6 frees, 101,080 bytes allocated
+==39243== 
+==39243== All heap blocks were freed -- no leaks are possible
+==39243== 
+==39243== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--39243-- 
+--39243-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--39243-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==39243== 
+==39243== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)

@@ -1,0 +1,188 @@
+#include<stdio.h>
+#include "answer02.h"
+
+int main(int argc, char * * argv)
+{
+  printf("Hello World!\n");
+  
+  return(0);
+}
+
+
+size_t my_strlen(const char * str)
+{
+  int num;
+  while(str[num] != '\0')
+    {
+      num++;
+    }
+  
+  return(num-1);
+}
+
+
+int my_countchar(const char * str, char ch)
+{
+  int num=0;
+  int indexc;
+  for (indexc= 0; str[indexc] != '\0'; indexc++)
+    {
+      if(str[indexc] == ch)
+	{
+	  num++;
+	}
+    }
+
+  return(num);
+}
+
+char * my_strchr(const char * str, int ch)
+{
+  int index=0;
+  int length;
+  length = my_strlen(str);
+  while (str[index]!=ch && index<(length+1))
+    {
+      index++;
+    }
+  if ((length+1)<index)
+    {
+      return(NULL);
+    }
+  else
+    {
+      return (char *) &str[index];
+    }
+}
+
+char * my_strrchr(const char * str, int ch)
+{
+  int index=0;
+  int length;
+  length = my_strlen(str);
+  while (str[length + 1 -index]!=ch && index<(length+1))
+    {
+      index++;
+    }
+  if ((length+1)<index)
+    {
+      return(NULL);
+    }
+  else
+    {
+      length = length + 1 - index;
+      return (char *) &str[length];
+    }
+}
+
+char * my_strstr(const char * haystack, const char * needle)
+{
+  int indexh;
+  int lengthhay;
+  int lengthn;
+  int indexn=0;
+  lengthn = my_strlen(needle);
+  lengthhay = my_strlen(haystack);
+  for(indexh=0; indexh<(lengthhay+1); indexh++)
+    {
+      while(haystack[indexh]==needle[indexn] && indexn<(lengthn+1))
+	{
+	  indexh++;
+	  indexn++;
+	}
+      if((indexn-1)==lengthn)
+	{
+	  indexh=indexh-lengthn;
+	  break;
+	}
+      else
+	{
+	  indexh = indexh-1;
+	  indexn = 0;
+	}
+    }
+  if((indexn-1)==lengthn)
+    {
+      return (char* ) &haystack[indexn];
+    }
+  else
+    {
+      return(NULL);
+    }
+}
+
+
+char * my_strcpy(char * dest, const char * src)
+{
+  int lengthsrc;
+  int num;
+
+  lengthsrc = my_strlen(src)+1;
+  for (num=0; num<lengthsrc; num++)
+    {
+      dest[num] = src[num];
+    }
+
+  return(dest);
+}
+
+
+char * my_strcat(char * dest, const char * src)
+{
+  int lengthdest;
+  int lengthsrc;
+  int index;
+  lengthdest = my_strlen(dest);
+  lengthsrc = my_strlen(src);
+  for(index=0; index<lengthsrc; index++)
+    {
+      dest[lengthdest+1+index] = src[index];
+    }
+  return(dest);
+
+}
+
+int my_isspace(int ch)
+{
+  if(ch == ' ' || ch=='\f' || ch=='\n' || ch=='r' || ch=='t' || ch=='v')
+    {
+      return(1);
+    }
+  else
+    {
+      return(0);
+    }
+ }
+
+ int my_atoi(const char * str)
+ {
+   int length;
+   int index=0;
+   int ret;
+   int minus;
+   length = my_strlen(str);
+   while(my_isspace(str[index])==1)
+     {
+       index++;
+     }
+   ret = 0;
+   while(((str[index]<='9') && (str[index]>='0'))|| (str[index]=='-'))
+     {
+       if(str[index]=='-')
+	 {
+	   minus = 1;
+	   index++;
+	 }
+       ret = ret * 10;
+       ret = ret + str[index] - '0';
+       index++;
+     }
+   if(minus==1)
+     {
+       return(-ret);
+     }
+   else
+     {
+       return(ret);
+	 }
+ }

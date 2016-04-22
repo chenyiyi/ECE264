@@ -1,0 +1,41 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+#include"answer05.h"
+void partitionAllin(int *buffer, int num, int ind);
+
+void partitionAll (int value)
+{
+  int * buffer;
+  int ind;
+ 
+  buffer = malloc(sizeof(int) * value);
+  ind=0;
+  partitionAllin(buffer, value, ind);
+  
+}
+
+void partitionAllin(int *buffer, int num, int ind)
+{
+  int i;
+  int h;
+  if(num == 0)
+    {
+      for(h=0; h<ind-1; h++)
+	{
+	  printf("%d + ", buffer[h]);
+	}
+      printf("%d\n", buffer[h]);
+      return;
+      
+    }
+  for(i=1; i<=num; i++)
+    {
+      buffer[ind] = i;
+      partitionAllin(buffer, num-i, ind+1);
+    }
+}
+
+
+		 

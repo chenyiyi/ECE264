@@ -1,0 +1,18 @@
+#include "answer12.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+
+uint128 alphaTou128(const char * str)
+{
+  uint128 result;
+  int ind =0;
+  while(str[ind] < 48 || str[ind] >57)
+    {
+      if(str[ind] =="-"){
+	return FALSE;
+      }
+      ind ++;
+    }
+  ind = 0;
+  while(str[ind] 

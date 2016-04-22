@@ -1,0 +1,87 @@
+==11330== Memcheck, a memory error detector
+==11330== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==11330== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==11330== Command: ./a.out images/bmps/03-hawkes-bay-NZ.bmp student-out-07_03-hawkes-bay-NZ.ee264
+==11330== Parent PID: 11329
+==11330== 
+--11330-- 
+--11330-- Valgrind options:
+--11330--    --tool=memcheck
+--11330--    --leak-check=full
+--11330--    --verbose
+--11330--    --log-file=memcheck-07.log
+--11330-- Contents of /proc/version:
+--11330--   Linux version 2.6.32-431.29.2.el6.x86_64 (mockbuild@x86-026.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Jul 27 15:55:46 EDT 2014
+--11330-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--11330-- Page sizes: currently 4096, max supported 4096
+--11330-- Valgrind library directory: /usr/lib64/valgrind
+--11330-- Reading syms from /tmp/.cbkiBo/a.out
+--11330-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--11330--    object doesn't have a dynamic symbol table
+--11330-- Reading syms from /lib64/ld-2.12.so
+--11330--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--11330--   .. build-id is valid
+--11330-- Scheduler: using generic scheduler lock implementation.
+--11330-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==11330== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-11330-by-chen1234-on-ecegrid-thin4.ecn.purdue.edu
+==11330== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-11330-by-chen1234-on-ecegrid-thin4.ecn.purdue.edu
+==11330== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-11330-by-chen1234-on-ecegrid-thin4.ecn.purdue.edu
+==11330== 
+==11330== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==11330== don't want to do, unless you know exactly what you're doing,
+==11330== or are doing some strange experiment):
+==11330==   /usr/lib64/valgrind/../../bin/vgdb --pid=11330 ...command...
+==11330== 
+==11330== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==11330==   /path/to/gdb ./a.out
+==11330== and then give GDB the following command
+==11330==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=11330
+==11330== --pid is optional if only one valgrind process is running
+==11330== 
+--11330-- REDIR: 0x3350217610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--11330-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--11330-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--11330-- REDIR: 0x3350217480 (index) redirected to 0x4a07c30 (index)
+--11330-- REDIR: 0x3350217500 (strcmp) redirected to 0x4a08570 (strcmp)
+--11330-- Reading syms from /lib64/libc-2.12.so
+--11330--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--11330--   .. build-id is valid
+--11330-- REDIR: 0x3350684cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11330-- REDIR: 0x3350686f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11330-- REDIR: 0x3350682c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--11330-- REDIR: 0x335067f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11330-- REDIR: 0x3350728420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--11330-- REDIR: 0x3350681120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--11330-- REDIR: 0x33507336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--11330-- REDIR: 0x335068aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--11330-- REDIR: 0x3350684500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--11330-- REDIR: 0x335067b520 (free) redirected to 0x4a063a9 (free)
+--11330-- REDIR: 0x335067a640 (malloc) redirected to 0x4a069ac (malloc)
+--11330-- REDIR: 0x3350689670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--11330-- REDIR: 0x3350681160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+==11330== 
+==11330== HEAP SUMMARY:
+==11330==     in use at exit: 60,064 bytes in 3 blocks
+==11330==   total heap usage: 6 allocs, 3 frees, 240,665 bytes allocated
+==11330== 
+==11330== Searching for pointers to 3 not-freed blocks
+==11330== Checked 64,648 bytes
+==11330== 
+==11330== 60,064 (24 direct, 60,040 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
+==11330==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==11330==    by 0x4010F6: Image_loadbmp (<stdin>:101)
+==11330==    by 0x401C1D: main (<stdin>:65)
+==11330== 
+==11330== LEAK SUMMARY:
+==11330==    definitely lost: 24 bytes in 1 blocks
+==11330==    indirectly lost: 60,040 bytes in 2 blocks
+==11330==      possibly lost: 0 bytes in 0 blocks
+==11330==    still reachable: 0 bytes in 0 blocks
+==11330==         suppressed: 0 bytes in 0 blocks
+==11330== 
+==11330== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+--11330-- 
+--11330-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--11330-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==11330== 
+==11330== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)

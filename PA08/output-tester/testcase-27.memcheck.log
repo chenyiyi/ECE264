@@ -1,0 +1,94 @@
+==30366== Memcheck, a memory error detector
+==30366== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==30366== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==30366== Command: ./a.out 26
+==30366== Parent PID: 30365
+==30366== 
+--30366-- 
+--30366-- Valgrind options:
+--30366--    --tool=memcheck
+--30366--    --leak-check=full
+--30366--    --verbose
+--30366--    --log-file=memcheck.log
+--30366-- Contents of /proc/version:
+--30366--   Linux version 2.6.32-431.29.2.el6.x86_64 (mockbuild@x86-026.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Jul 27 15:55:46 EDT 2014
+--30366-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--30366-- Page sizes: currently 4096, max supported 4096
+--30366-- Valgrind library directory: /usr/lib64/valgrind
+--30366-- Reading syms from /tmp/.LKWzps/a.out
+--30366-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--30366--    object doesn't have a dynamic symbol table
+--30366-- Reading syms from /lib64/ld-2.12.so
+--30366--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--30366--   .. build-id is valid
+--30366-- Scheduler: using generic scheduler lock implementation.
+--30366-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==30366== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-30366-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==30366== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-30366-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==30366== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-30366-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==30366== 
+==30366== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==30366== don't want to do, unless you know exactly what you're doing,
+==30366== or are doing some strange experiment):
+==30366==   /usr/lib64/valgrind/../../bin/vgdb --pid=30366 ...command...
+==30366== 
+==30366== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==30366==   /path/to/gdb ./a.out
+==30366== and then give GDB the following command
+==30366==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=30366
+==30366== --pid is optional if only one valgrind process is running
+==30366== 
+--30366-- REDIR: 0x35ff417610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--30366-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--30366-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--30366-- REDIR: 0x35ff417480 (index) redirected to 0x4a07c30 (index)
+--30366-- REDIR: 0x35ff417500 (strcmp) redirected to 0x4a08570 (strcmp)
+--30366-- Reading syms from /lib64/libc-2.12.so
+--30366--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--30366--   .. build-id is valid
+--30366-- REDIR: 0x35ff884cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--30366-- REDIR: 0x35ff886f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--30366-- REDIR: 0x35ff882c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--30366-- REDIR: 0x35ff87a640 (malloc) redirected to 0x4a069ac (malloc)
+--30366-- REDIR: 0x35ff881160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--30366-- REDIR: 0x35ff889670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--30366-- REDIR: 0x35ff884500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--30366-- REDIR: 0x35ff88aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--30366-- REDIR: 0x35ff87b520 (free) redirected to 0x4a063a9 (free)
+--30366-- REDIR: 0x35ff87f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--30366-- REDIR: 0x35ff928420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+==30366== 
+==30366== HEAP SUMMARY:
+==30366==     in use at exit: 48 bytes in 2 blocks
+==30366==   total heap usage: 15 allocs, 13 frees, 180 bytes allocated
+==30366== 
+==30366== Searching for pointers to 2 not-freed blocks
+==30366== Checked 64,568 bytes
+==30366== 
+==30366== 16 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==30366==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==30366==    by 0x400B17: List_sort (answer08.c:110)
+==30366==    by 0x401D63: test_sort (test_List_sort.c:41)
+==30366==    by 0x401F4A: tests_List_sort (test_List_sort.c:99)
+==30366==    by 0x40221D: main (<stdin>:159)
+==30366== 
+==30366== 32 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==30366==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==30366==    by 0x400B2C: List_sort (answer08.c:111)
+==30366==    by 0x401D63: test_sort (test_List_sort.c:41)
+==30366==    by 0x401F4A: tests_List_sort (test_List_sort.c:99)
+==30366==    by 0x40221D: main (<stdin>:159)
+==30366== 
+==30366== LEAK SUMMARY:
+==30366==    definitely lost: 48 bytes in 2 blocks
+==30366==    indirectly lost: 0 bytes in 0 blocks
+==30366==      possibly lost: 0 bytes in 0 blocks
+==30366==    still reachable: 0 bytes in 0 blocks
+==30366==         suppressed: 0 bytes in 0 blocks
+==30366== 
+==30366== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)
+--30366-- 
+--30366-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--30366-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==30366== 
+==30366== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 6 from 6)

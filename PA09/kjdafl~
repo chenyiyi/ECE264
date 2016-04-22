@@ -1,0 +1,133 @@
+   ---------------------------------------------------------------------------
+   Welcome to the PA09 testing program. This program takes a _long_ time
+   to execute. There is a reason for this. You should not rely on this
+   program to test your code as you go. Instead, you should think about
+   what your code should be doing, and what inputs should produce what
+   outputs for each of your functions.
+   
+        YOU SHOULD THEN TEST EVERY PIECE OF CODE AS YOU WRITE IT 
+   
+                                 AND 
+   
+                        FIX MISTAKES AS YOU GO.
+   
+   When you are convinced that you have the entire assignment 100%% correct,
+   then you can use this testing program to test it. 
+   
+   This will give you your mark assuming that you submit it correctly, and 
+   there are no other irregularities.
+   ---------------------------------------------------------------------------
+
+test 1 :: passing incorrect filename to load_tree_from_file()
+
+	char * filename = "carzyfilename";
+	BusinessNode * root;
+	root = load_tree_from_file(filename);
+
+   (pass.)
+
+test 2 :: testing destroy_tree()
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	destroy_tree(root);
+
+   (pass.)
+
+test 3 :: testing destroy_tree() when root is NULL
+
+	BusinessNode * root = NULL
+	destroy_tree(root);
+
+   (pass.)
+
+test 4 :: testing whether the tree is built correctly
+
+	BusinessNode * tree = load_tree_from_file("yelp_businesses.tsv");
+	compare_trees(tree, sol_tree);
+Compare found one tree had children that the other tree did not!
+Found NULL in students tree when expecting node:
+Eric Goldberg, MD
+=================
+Stars:
+   3.5
+Address:
+   4840 E Indian School Rd, Ste 101, Phoenix, AZ 85018
+
+
+   // Error, Tree is not built correctly.
+	Check the README for instructions on how to build the tree correctly.
+
+	destroy_tree(tree);
+
+   Testcase FAILED
+
+test 5 :: testing the create_node function.
+
+	BusinessNode * node = create_node(strdup("5.0"), strdup("Purdue University Electrical Engineering"), strdup("465 Northwestern Avenue")
+   (pass.)
+
+test 6 :: testing the tree_insert function.
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = create_node(strdup("5.0"),strdup("test node"),strdup("no address"));
+	BusinessNode * root = tree_insert(node,root);
+   (pass.)
+
+test 7 :: testing the tree_insert function: insert to NULL root.
+
+	BusinessNode * root = NULL;
+	BusinessNode * node = create_node(strdup("5.0"),strdup("test node"),strdup("no address"));
+	BusinessNode * root = tree_insert(node,root);
+   (pass.)
+
+test 8 :: testing the tree_search_name function: Looking for: Pine Cone Restaurant
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Pine Cone Restaurant",root);
+   (pass.)
+
+test 9 :: testing the tree_search_name function: Looking for: Full Circle Auto Wash
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Full Circle Auto Wash",root);
+   (pass.)
+
+test 10 :: testing the tree_search_name function: Looking for: Oriental Supermarket
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Oriental Supermarket",root);
+   (pass.)
+
+test 11 :: testing the tree_search_name function: Looking for: Surfer Express Car Wash
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Surfer Express Car Wash",root);
+   (pass.)
+
+test 12 :: testing the tree_search_name function: Looking for: Dennis' Special Shop
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Dennis' Special Shop",root);
+   (pass.)
+
+test 13 :: testing the tree_search_name function: Looking for: Purdue University
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Purdue University",root);
+   (pass.)
+
+test 14 :: testing the tree_search_name function: Looking for: Vinny-Boy's Italian Market Place
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Vinny-Boy's Italian Market Place",root);
+   (pass.)
+
+test 15 :: testing the tree_search_name function: Looking for: Mando's Mexican Food
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Mando's Mexican Food",root);
+   (pass.)
+
+
+14/15 testcases passed.
+Overall mark is a FAIL.

@@ -1,0 +1,9 @@
+Breakpoint 1 at 0x400a66: file answer01.c, line 76.
+Starting program: /home/shay/a/chen1234/ECE264/yi/PA01/pa01 
+
+Program exited normally.
+Missing separate debuginfos, use: debuginfo-install glibc-2.12-1.132.el6_5.4.x86_64
+Breakpoint 2 at 0x40094d: file answer01.c, line 14.
+Starting program: /home/shay/a/chen1234/ECE264/yi/PA01/pa01 
+
+Program exited normally.

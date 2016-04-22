@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include"answer02.h"
+
+int main(int argc, char * * argv)
+{
+  printf("Hello World!\n");
+
+}
+
+size_t my_strlen(const char * str);
+{
+  printf("%d\n",strlen(str);)
+
+  return(0);
+}
+
+int my_countchar(const char * str, char ch);
+{
+  int num=0;
+  int index;
+  for (index= 0; str(index) != '/0'; index++)
+    {
+      if(str(index) == ch)
+	{
+	  num++;
+	}
+    }
+  printf("%d\n",num);
+
+  return(0);
+}
+
+char * my_strrchr(const char * str, int ch);
+{
+  int index=0;
+  int length;
+  while (str(index)!=ch)
+    {
+      index++;
+    }
+  length = strlen(str);
+  if (length<index)
+    {
+      return(0);
+    }
+  else
+    {
+      return(str(index));
+    }
+}
+
+char * my_strchr(const char * str, int ch);
+{
+  int index=0;
+  int length;
+  length = strlen(str);
+  while (str[length-index]!=ch)
+    {
+      index++;
+    }
+  if (length<index)
+    {
+      return(0);
+    }
+  else
+    {
+      return(&str[length - index]);
+    }
+}
+
+char * my_strstr(const * haystack, const char * needle);
+{
+  int indexh;
+  int lengthhay;
+  int lengthn;
+  int indexn=0;
+  lengthn = strlen(needle);
+  lengthhay = strlen(haystack);
+  for(indexh=0; indexh<lengthhay; indexh++)
+    {
+      while(haystack(indexh)==needle(indexn) && indexn<lengthn)
+	{
+	  indexh++;
+	  indexn++;

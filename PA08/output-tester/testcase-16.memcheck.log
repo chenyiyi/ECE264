@@ -1,0 +1,261 @@
+==3876== Memcheck, a memory error detector
+==3876== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==3876== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==3876== Command: ./a.out 15
+==3876== Parent PID: 3875
+==3876== 
+--3876-- 
+--3876-- Valgrind options:
+--3876--    --tool=memcheck
+--3876--    --leak-check=full
+--3876--    --verbose
+--3876--    --log-file=memcheck.log
+--3876-- Contents of /proc/version:
+--3876--   Linux version 2.6.32-431.29.2.el6.x86_64 (mockbuild@x86-026.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Jul 27 15:55:46 EDT 2014
+--3876-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--3876-- Page sizes: currently 4096, max supported 4096
+--3876-- Valgrind library directory: /usr/lib64/valgrind
+--3876-- Reading syms from /tmp/.IiiStr/a.out
+--3876-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--3876--    object doesn't have a dynamic symbol table
+--3876-- Reading syms from /lib64/ld-2.12.so
+--3876--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--3876--   .. build-id is valid
+--3876-- Scheduler: using generic scheduler lock implementation.
+--3876-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==3876== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-3876-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==3876== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-3876-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==3876== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-3876-by-chen1234-on-ecegrid-thin1.ecn.purdue.edu
+==3876== 
+==3876== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==3876== don't want to do, unless you know exactly what you're doing,
+==3876== or are doing some strange experiment):
+==3876==   /usr/lib64/valgrind/../../bin/vgdb --pid=3876 ...command...
+==3876== 
+==3876== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==3876==   /path/to/gdb ./a.out
+==3876== and then give GDB the following command
+==3876==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=3876
+==3876== --pid is optional if only one valgrind process is running
+==3876== 
+--3876-- REDIR: 0x35ff417610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--3876-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--3876-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--3876-- REDIR: 0x35ff417480 (index) redirected to 0x4a07c30 (index)
+--3876-- REDIR: 0x35ff417500 (strcmp) redirected to 0x4a08570 (strcmp)
+--3876-- Reading syms from /lib64/libc-2.12.so
+--3876--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--3876--   .. build-id is valid
+--3876-- REDIR: 0x35ff884cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3876-- REDIR: 0x35ff886f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3876-- REDIR: 0x35ff882c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--3876-- REDIR: 0x35ff87a640 (malloc) redirected to 0x4a069ac (malloc)
+--3876-- REDIR: 0x35ff881160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--3876-- REDIR: 0x35ff889670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--3876-- REDIR: 0x35ff87f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3876-- REDIR: 0x35ff928420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--3876-- REDIR: 0x35ff884500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--3876-- REDIR: 0x35ff88aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--3876-- REDIR: 0x35ff87b520 (free) redirected to 0x4a063a9 (free)
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x400E9E: List_print (test_support_functions.c:28)
+==3876==    by 0x401882: test_merge (test_List_merge.c:55)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400E75: List_print (test_support_functions.c:29)
+==3876==    by 0x401882: test_merge (test_List_merge.c:55)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400E91: List_print (test_support_functions.c:30)
+==3876==    by 0x401882: test_merge (test_List_merge.c:55)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x400BB7: List_length_sol (<stdin>:36)
+==3876==    by 0x4018B6: test_merge (test_List_merge.c:61)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400BBD: List_length_sol (<stdin>:36)
+==3876==    by 0x4018B6: test_merge (test_List_merge.c:61)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x4019A8: test_merge (test_List_merge.c:71)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x401935: test_merge (test_List_merge.c:73)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x40193B: test_merge (test_List_merge.c:75)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x401968: test_merge (test_List_merge.c:82)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x40199B: test_merge (test_List_merge.c:87)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x400B77: List_destroy_sol (<stdin>:27)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400B7D: List_destroy_sol (<stdin>:28)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400B8D: List_destroy_sol (<stdin>:29)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x4A063E3: free (vg_replace_malloc.c:446)
+==3876==    by 0x400BA3: List_destroy_sol (<stdin>:30)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== HEAP SUMMARY:
+==3876==     in use at exit: 0 bytes in 0 blocks
+==3876==   total heap usage: 13 allocs, 13 frees, 132 bytes allocated
+==3876== 
+==3876== All heap blocks were freed -- no leaks are possible
+==3876== 
+==3876== Use --track-origins=yes to see where uninitialised values come from
+==3876== ERROR SUMMARY: 14 errors from 14 contexts (suppressed: 6 from 6)
+==3876== 
+==3876== 1 errors in context 1 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x4A063E3: free (vg_replace_malloc.c:446)
+==3876==    by 0x400BA3: List_destroy_sol (<stdin>:30)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 2 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400B8D: List_destroy_sol (<stdin>:29)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 3 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400B7D: List_destroy_sol (<stdin>:28)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 4 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x400B77: List_destroy_sol (<stdin>:27)
+==3876==    by 0x4019D8: test_merge (test_List_merge.c:93)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 5 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x40199B: test_merge (test_List_merge.c:87)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 6 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x401968: test_merge (test_List_merge.c:82)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 7 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x40193B: test_merge (test_List_merge.c:75)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 8 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x401935: test_merge (test_List_merge.c:73)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 9 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x4019A8: test_merge (test_List_merge.c:71)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 10 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400BBD: List_length_sol (<stdin>:36)
+==3876==    by 0x4018B6: test_merge (test_List_merge.c:61)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 11 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x400BB7: List_length_sol (<stdin>:36)
+==3876==    by 0x4018B6: test_merge (test_List_merge.c:61)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 12 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400E91: List_print (test_support_functions.c:30)
+==3876==    by 0x401882: test_merge (test_List_merge.c:55)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 13 of 14:
+==3876== Use of uninitialised value of size 8
+==3876==    at 0x400E75: List_print (test_support_functions.c:29)
+==3876==    by 0x401882: test_merge (test_List_merge.c:55)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+==3876== 
+==3876== 1 errors in context 14 of 14:
+==3876== Conditional jump or move depends on uninitialised value(s)
+==3876==    at 0x400E9E: List_print (test_support_functions.c:28)
+==3876==    by 0x401882: test_merge (test_List_merge.c:55)
+==3876==    by 0x401A57: tests_List_merge (test_List_merge.c:108)
+==3876==    by 0x4021A5: main (<stdin>:159)
+==3876== 
+--3876-- 
+--3876-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--3876-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==3876== 
+==3876== ERROR SUMMARY: 14 errors from 14 contexts (suppressed: 6 from 6)

@@ -1,0 +1,575 @@
+   ---------------------------------------------------------------------------
+   Welcome to the PA09 testing program. This program takes a _long_ time
+   to execute. There is a reason for this. You should not rely on this
+   program to test your code as you go. Instead, you should think about
+   what your code should be doing, and what inputs should produce what
+   outputs for each of your functions.
+   
+        YOU SHOULD THEN TEST EVERY PIECE OF CODE AS YOU WRITE IT 
+   
+                                 AND 
+   
+                        FIX MISTAKES AS YOU GO.
+   
+   When you are convinced that you have the entire assignment 100%% correct,
+   then you can use this testing program to test it. 
+   
+   This will give you your mark assuming that you submit it correctly, and 
+   there are no other irregularities.
+   ---------------------------------------------------------------------------
+
+test 1 :: passing incorrect filename to load_tree_from_file()
+
+	char * filename = "carzyfilename";
+	BusinessNode * root;
+	root = load_tree_from_file(filename);
+
+   (pass.)
+
+test 2 :: testing destroy_tree()
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	destroy_tree(root);
+
+   (pass.)
+
+test 3 :: testing destroy_tree() when root is NULL
+
+	BusinessNode * root = NULL
+	destroy_tree(root);
+
+   (pass.)
+
+test 4 :: testing whether the tree is built correctly
+
+	BusinessNode * tree = load_tree_from_file("yelp_businesses.tsv");
+	compare_trees(tree, sol_tree);
+	destroy_tree(tree);
+
+   (pass.)
+Memory errors detected, testcase failed.
+==16600== Memcheck, a memory error detector
+==16600== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==16600== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==16600== Command: /tmp/.zot47i/a.out 3
+==16600== Parent PID: 16595
+==16600== 
+--16600-- 
+--16600-- Valgrind options:
+--16600--    --tool=memcheck
+--16600--    --leak-check=full
+--16600--    --verbose
+--16600--    --log-file=memcheck.log
+--16600-- Contents of /proc/version:
+--16600--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--16600-- Arch and hwcaps: AMD64, amd64-sse3-cx16-avx
+--16600-- Page sizes: currently 4096, max supported 4096
+--16600-- Valgrind library directory: /usr/lib64/valgrind
+--16600-- Reading syms from /tmp/.zot47i/a.out
+--16600-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--16600--    object doesn't have a dynamic symbol table
+--16600-- Reading syms from /lib64/ld-2.12.so
+--16600--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--16600--   .. build-id is valid
+--16600-- Scheduler: using generic scheduler lock implementation.
+--16600-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==16600== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-16600-by-chen1234-on-ecegrid-thin5.ecn.purdue.edu
+==16600== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-16600-by-chen1234-on-ecegrid-thin5.ecn.purdue.edu
+==16600== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-16600-by-chen1234-on-ecegrid-thin5.ecn.purdue.edu
+==16600== 
+==16600== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==16600== don't want to do, unless you know exactly what you're doing,
+==16600== or are doing some strange experiment):
+==16600==   /usr/lib64/valgrind/../../bin/vgdb --pid=16600 ...command...
+==16600== 
+==16600== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==16600==   /path/to/gdb /tmp/.zot47i/a.out
+==16600== and then give GDB the following command
+==16600==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=16600
+==16600== --pid is optional if only one valgrind process is running
+==16600== 
+--16600-- REDIR: 0x398ac17610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--16600-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--16600-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--16600-- REDIR: 0x398ac17480 (index) redirected to 0x4a07c30 (index)
+--16600-- REDIR: 0x398ac17500 (strcmp) redirected to 0x4a08570 (strcmp)
+--16600-- Reading syms from /lib64/libc-2.12.so
+--16600--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--16600--   .. build-id is valid
+--16600-- REDIR: 0x398b084cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16600-- REDIR: 0x398b086f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16600-- REDIR: 0x398b082c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--16600-- REDIR: 0x398b08aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--16600-- REDIR: 0x398b084500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--16600-- REDIR: 0x398b07b520 (free) redirected to 0x4a063a9 (free)
+--16600-- REDIR: 0x398b081160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--16600-- REDIR: 0x398b07a640 (malloc) redirected to 0x4a069ac (malloc)
+--16600-- REDIR: 0x398b083350 (memchr) redirected to 0x4a08610 (memchr)
+--16600-- REDIR: 0x398b089670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--16600-- REDIR: 0x398b07f630 (index) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16600-- REDIR: 0x398b128370 (__strchr_sse42) redirected to 0x4a07b40 (index)
+--16600-- REDIR: 0x398b07f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16600-- REDIR: 0x398b128420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--16600-- REDIR: 0x398b081120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--16600-- REDIR: 0x398b1336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+==16600== Invalid read of size 1
+==16600==    at 0x4A07FB2: __GI_strlen (mc_replace_strmem.c:404)
+==16600==    by 0x398B080E85: strdup (strdup.c:42)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==  Address 0x743b1e0 is 0 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid read of size 1
+==16600==    at 0x4A07FC4: __GI_strlen (mc_replace_strmem.c:404)
+==16600==    by 0x398B080E85: strdup (strdup.c:42)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==  Address 0x743b1e1 is 1 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid read of size 1
+==16600==    at 0x4A08D21: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743b1f4 is 20 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid read of size 8
+==16600==    at 0x4A08D4C: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743b1e8 is 8 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid read of size 8
+==16600==    at 0x4A08D4C: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x401374: compare_trees (<stdin>:285)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743b268 is 40 bytes inside a block of size 48 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid read of size 1
+==16600==    at 0x4A08D21: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40139A: compare_trees (<stdin>:286)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743afd3 is 3 bytes inside a block of size 4 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid free() / delete / delete[] / realloc()
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x402012: destroy_tree (answer09.c:115)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==  Address 0x743b1e0 is 0 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid free() / delete / delete[] / realloc()
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x402022: destroy_tree (answer09.c:116)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==  Address 0x743afd0 is 0 bytes inside a block of size 4 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== Invalid free() / delete / delete[] / realloc()
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x402032: destroy_tree (answer09.c:117)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==  Address 0x743b240 is 0 bytes inside a block of size 48 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== HEAP SUMMARY:
+==16600==     in use at exit: 1,011,648 bytes in 42,152 blocks
+==16600==   total heap usage: 674,451 allocs, 632,302 frees, 17,268,440 bytes allocated
+==16600== 
+==16600== Searching for pointers to 42,152 not-freed blocks
+==16600== Checked 64,624 bytes
+==16600== 
+==16600== 1,011,624 bytes in 42,151 blocks are definitely lost in loss record 2 of 2
+==16600==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==16600==    by 0x401C51: explode (answer09.c:19)
+==16600==    by 0x401E96: load_tree_from_file (answer09.c:86)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== LEAK SUMMARY:
+==16600==    definitely lost: 1,011,624 bytes in 42,151 blocks
+==16600==    indirectly lost: 0 bytes in 0 blocks
+==16600==      possibly lost: 0 bytes in 0 blocks
+==16600==    still reachable: 24 bytes in 1 blocks
+==16600==         suppressed: 0 bytes in 0 blocks
+==16600== Reachable blocks (those to which a pointer was found) are not shown.
+==16600== To see them, rerun with: --leak-check=full --show-reachable=yes
+==16600== 
+==16600== ERROR SUMMARY: 94 errors from 10 contexts (suppressed: 6 from 6)
+==16600== 
+==16600== 1 errors in context 1 of 10:
+==16600== Invalid free() / delete / delete[] / realloc()
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x402032: destroy_tree (answer09.c:117)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==  Address 0x743b240 is 0 bytes inside a block of size 48 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 1 errors in context 2 of 10:
+==16600== Invalid free() / delete / delete[] / realloc()
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x402022: destroy_tree (answer09.c:116)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==  Address 0x743afd0 is 0 bytes inside a block of size 4 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 1 errors in context 3 of 10:
+==16600== Invalid free() / delete / delete[] / realloc()
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x402012: destroy_tree (answer09.c:115)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x402003: destroy_tree (answer09.c:114)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==    by 0x401FF3: destroy_tree (answer09.c:113)
+==16600==  Address 0x743b1e0 is 0 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 2 errors in context 4 of 10:
+==16600== Invalid read of size 8
+==16600==    at 0x4A08D4C: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743b1e8 is 8 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 3 errors in context 5 of 10:
+==16600== Invalid read of size 1
+==16600==    at 0x4A07FB2: __GI_strlen (mc_replace_strmem.c:404)
+==16600==    by 0x398B080E85: strdup (strdup.c:42)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==  Address 0x743b1e0 is 0 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 4 errors in context 6 of 10:
+==16600== Invalid read of size 1
+==16600==    at 0x4A08D21: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40139A: compare_trees (<stdin>:286)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743afd3 is 3 bytes inside a block of size 4 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 5 errors in context 7 of 10:
+==16600== Invalid read of size 1
+==16600==    at 0x4A08D21: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743b1f4 is 20 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 6 errors in context 8 of 10:
+==16600== Invalid read of size 8
+==16600==    at 0x4A08D4C: memcpy (mc_replace_strmem.c:882)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x401374: compare_trees (<stdin>:285)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==  Address 0x743b268 is 40 bytes inside a block of size 48 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+==16600== 
+==16600== 70 errors in context 9 of 10:
+==16600== Invalid read of size 1
+==16600==    at 0x4A07FC4: __GI_strlen (mc_replace_strmem.c:404)
+==16600==    by 0x398B080E85: strdup (strdup.c:42)
+==16600==    by 0x4011D9: trimcpy (<stdin>:248)
+==16600==    by 0x401268: strtrimcmp (<stdin>:258)
+==16600==    by 0x40134E: compare_trees (<stdin>:284)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x401474: compare_trees (<stdin>:297)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==    by 0x40143A: compare_trees (<stdin>:295)
+==16600==  Address 0x743b1e1 is 1 bytes inside a block of size 21 free'd
+==16600==    at 0x4A06430: free (vg_replace_malloc.c:446)
+==16600==    by 0x401F2A: load_tree_from_file (answer09.c:92)
+==16600==    by 0x4014ED: test_build (<stdin>:312)
+==16600==    by 0x401AED: main (<stdin>:425)
+==16600== 
+--16600-- 
+--16600-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--16600-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==16600== 
+==16600== ERROR SUMMARY: 94 errors from 10 contexts (suppressed: 6 from 6)
+
+test 5 :: testing the create_node function.
+
+	BusinessNode * node = create_node(strdup("5.0"), strdup("Purdue University Electrical Engineering"), strdup("465 Northwestern Avenue")
+   (pass.)
+
+test 6 :: testing the tree_insert function.
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = create_node(strdup("5.0"),strdup("test node"),strdup("no address"));
+	BusinessNode * root = tree_insert(node,root);
+   (pass.)
+
+test 7 :: testing the tree_insert function: insert to NULL root.
+
+	BusinessNode * root = NULL;
+	BusinessNode * node = create_node(strdup("5.0"),strdup("test node"),strdup("no address"));
+	BusinessNode * root = tree_insert(node,root);
+   (pass.)
+
+test 8 :: testing the tree_search_name function: Looking for: Pine Cone Restaurant
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Pine Cone Restaurant",root);
+   (pass.)
+
+test 9 :: testing the tree_search_name function: Looking for: Full Circle Auto Wash
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Full Circle Auto Wash",root);
+   (pass.)
+
+test 10 :: testing the tree_search_name function: Looking for: Oriental Supermarket
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Oriental Supermarket",root);
+   (pass.)
+
+test 11 :: testing the tree_search_name function: Looking for: Surfer Express Car Wash
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Surfer Express Car Wash",root);
+   (pass.)
+
+test 12 :: testing the tree_search_name function: Looking for: Dennis' Special Shop
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Dennis' Special Shop",root);
+   (pass.)
+
+test 13 :: testing the tree_search_name function: Looking for: Purdue University
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Purdue University",root);
+   (pass.)
+
+test 14 :: testing the tree_search_name function: Looking for: Vinny-Boy's Italian Market Place
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Vinny-Boy's Italian Market Place",root);
+   (pass.)
+
+test 15 :: testing the tree_search_name function: Looking for: Mando's Mexican Food
+
+	BusinessNode * root = load_tree_from_file("yelp_businesses.tsv");
+	BusinessNode * node = tree_search_name("Mando's Mexican Food",root);
+   (pass.)
+
+
+14/15 testcases passed.
+Overall mark is a FAIL.

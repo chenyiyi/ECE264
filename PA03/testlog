@@ -1,0 +1,529 @@
+   ---------------------------------------------------------------------------
+   Welcome to the PA03 testing program. This program takes a _long_ time
+   to execute. There is a reason for this. You should not rely on this
+   program to test your code as you go. Instead, you should think about
+   what your code should be doing, and what inputs should produce what
+   outputs for each of your functions.
+   
+        YOU SHOULD THEN TEST EVERY PIECE OF CODE AS YOU WRITE IT 
+   
+                                 AND 
+   
+                        FIX MISTAKES AS YOU GO.
+   
+   When you are convinced that you have the entire assignment 100%% correct,
+   then you can use this testing program to test it. 
+   
+   This will give you your mark assuming that you submit it correctly, and 
+   there are no other irregularities.
+   ---------------------------------------------------------------------------
+
+test 01 :: passing NULL to strcat_ex()
+
+   const char * z2 = "How did it get so late so soon?";
+   char * s1 = NULL;
+   int n;
+   char * s2 = strcat_ex(&s1, &n, z2);
+   // s1 = 0x4c3c040: "How did it get so late so soon?"
+   // s2 = 0x4c3c040
+   // n = 63
+   (pass.)
+
+test 02 :: passing NULL to strcat_ex()
+
+   const char * z0 = "";
+   char * s1 = NULL;
+   int n;
+   char * s2 = strcat_ex(&s1, &n, z0);
+   // s1 = 0x4c3c040: ""
+   // s2 = 0x4c3c040
+   // n = 1
+   (pass.)
+
+test 03 :: no reallocate
+
+   const char * z2 = "How did it get so late so soon?";
+   int n = 2048;
+   char * s1 = malloc(n);
+   char * s3 = s1; // keep a copy
+   s1[0] = '\0';
+   char * s2 = strcat_ex(&s1, &n, z2);
+   // s1 = 0x4c3c040: "How did it get so late so soon?"
+   // s2 = 0x4c3c040
+   // s3 = 0x4c3c040
+   // n = 2048
+   (pass.)
+
+test 04 :: force reallocate
+
+   const char * z2 = "How did it get so late so soon?";
+   const char * s0 = "Hal, ";
+   char * s1 = strdup(s0);
+   int n = strlen(s0);
+   char * s2 = strcat_ex(&s1, &n, z2);
+   // s1 = 0x4c3c090: "Hal, How did it get so late so soon?"
+   // s2 = 0x4c3c090
+   // n = 73
+   (pass.)
+
+test 5 :: explode(...)
+
+   const char * str = "The\nTuring test";
+   const char * delims = " \n";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is "The"
+   // strArr[1] is "Turing"
+   // strArr[2] is "test"
+   (pass.)
+
+test 6 :: explode(...)
+
+   const char * str = "lady beatle brew";
+   const char * delims = " ";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is "lady"
+   // strArr[1] is "beatle"
+   // strArr[2] is "brew"
+   (pass.)
+
+test 7 :: explode(...)
+
+   const char * str = "The\nTuring test";
+   const char * delims = "";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is "The\nTuring test"
+   (pass.)
+
+test 8 :: explode(...)
+
+   const char * str = "The\nTuring test";
+   const char * delims = "\n";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is "The"
+   // strArr[1] is "Turing test"
+   (pass.)
+
+test 9 :: explode(...)
+
+   const char * str = "The\nTuring test";
+   const char * delims = "Tt";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is ""
+   // strArr[1] is "he\n"
+   // strArr[2] is "uring "
+   // strArr[3] is "es"
+   // strArr[4] is ""
+   (pass.)
+
+test 10 :: explode(...)
+
+   const char * str = "";
+   const char * delims = "Tt";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is ""
+   (pass.)
+
+test 11 :: explode(...)
+
+   const char * str = "";
+   const char * delims = "";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is ""
+   (pass.)
+
+test 12 :: explode(...)
+
+   const char * str = "The more that you read, the more things you will know. The more that you learn, the more places you\'ll go.";
+   const char * delims = " ,;.";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is "The"
+   // strArr[1] is "more"
+   // strArr[2] is "that"
+   // strArr[3] is "you"
+   // strArr[4] is "read"
+   // strArr[5] is ""
+   // strArr[6] is "the"
+   // strArr[7] is "more"
+   // strArr[8] is "things"
+   // strArr[9] is "you"
+   // strArr[10] is "will"
+   // strArr[11] is "know"
+   // strArr[12] is ""
+   // strArr[13] is "The"
+   // strArr[14] is "more"
+   // strArr[15] is "that"
+   // strArr[16] is "you"
+   // strArr[17] is "learn"
+   // strArr[18] is ""
+   // strArr[19] is "the"
+   // strArr[20] is "more"
+   // strArr[21] is "places"
+   // strArr[22] is "you\'ll"
+   // strArr[23] is "go"
+   // strArr[24] is ""
+   (pass.)
+
+test 13 :: explode(...)
+
+   const char * str = "Twas brillig, and the slithy toves\nDid gyre and gimble in the wabe:\nAll mimsy were the borogoves,\nAnd the mome raths outgrabe.\n\nBeware the Jabberwock, my son!\nThe jaws that bite, the claws that catch!\nBeware the Jubjub bird, and shun\nThe frumious Bandersnatch!\n\nHe took his vorpal sword in hand:\nLong time the manxome foe he sought --\nSo rested he by the Tumtum tree,\nAnd stood awhile in thought.\n\nAnd, as in uffish thought he stood,\nThe Jabberwock, with eyes of flame,\nCame whiffling through the tulgey wood,\nAnd burbled as it came!\n\nOne, two! One, two! And through and through\nThe vorpal blade went snicker-snack!\nHe left it dead, and with its head\nHe went galumphing back.\n\nAnd, has thou slain the Jabberwock?\nCome to my arms, my beamish boy!\nO frabjous day! Callooh! Callay!\nHe chortled in his joy.\n\nTwas brillig, and the slithy toves\nDid gyre and gimble in the wabe;\nAll mimsy were the borogoves,\nAnd the mome raths outgrabe.\n";
+   const char * delims = "\n";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is "Twas brillig, and the slithy toves"
+   // strArr[1] is "Did gyre and gimble in the wabe:"
+   // strArr[2] is "All mimsy were the borogoves,"
+   // strArr[3] is "And the mome raths outgrabe."
+   // strArr[4] is ""
+   // strArr[5] is "Beware the Jabberwock, my son!"
+   // strArr[6] is "The jaws that bite, the claws that catch!"
+   // strArr[7] is "Beware the Jubjub bird, and shun"
+   // strArr[8] is "The frumious Bandersnatch!"
+   // strArr[9] is ""
+   // strArr[10] is "He took his vorpal sword in hand:"
+   // strArr[11] is "Long time the manxome foe he sought --"
+   // strArr[12] is "So rested he by the Tumtum tree,"
+   // strArr[13] is "And stood awhile in thought."
+   // strArr[14] is ""
+   // strArr[15] is "And, as in uffish thought he stood,"
+   // strArr[16] is "The Jabberwock, with eyes of flame,"
+   // strArr[17] is "Came whiffling through the tulgey wood,"
+   // strArr[18] is "And burbled as it came!"
+   // strArr[19] is ""
+   // strArr[20] is "One, two! One, two! And through and through"
+   // strArr[21] is "The vorpal blade went snicker-snack!"
+   // strArr[22] is "He left it dead, and with its head"
+   // strArr[23] is "He went galumphing back."
+   // strArr[24] is ""
+   // strArr[25] is "And, has thou slain the Jabberwock?"
+   // strArr[26] is "Come to my arms, my beamish boy!"
+   // strArr[27] is "O frabjous day! Callooh! Callay!"
+   // strArr[28] is "He chortled in his joy."
+   // strArr[29] is ""
+   // strArr[30] is "Twas brillig, and the slithy toves"
+   // strArr[31] is "Did gyre and gimble in the wabe;"
+   // strArr[32] is "All mimsy were the borogoves,"
+   // strArr[33] is "And the mome raths outgrabe."
+   // strArr[34] is ""
+   (pass.)
+
+test 14 :: explode(...)
+
+   const char * str = "aaaaa";
+   const char * delims = "a";
+   int n;
+   char * * strArr = explode(std, delims, &n);
+   // strArr[0] is ""
+   // strArr[1] is ""
+   // strArr[2] is ""
+   // strArr[3] is ""
+   // strArr[4] is ""
+   // strArr[5] is ""
+   (pass.)
+
+test 15 :: implode(...)
+
+   int len = 3
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("The");
+   strArr[1] = strdup("Turing");
+   strArr[2] = strdup("test");
+   const char * glue = " ";
+   char * s = implode(strArr, len, glue);
+   // s is "The Turing test"
+   (pass.)
+
+test 16 :: implode(...)
+
+   int len = 2
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("The");
+   strArr[1] = strdup("Turing test");
+   const char * glue = "{newline}";
+   char * s = implode(strArr, len, glue);
+   // s is "The{newline}Turing test"
+   (pass.)
+
+test 17 :: implode(...)
+
+   int len = 5
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("");
+   strArr[1] = strdup("he\n");
+   strArr[2] = strdup("uring ");
+   strArr[3] = strdup("es");
+   strArr[4] = strdup("");
+   const char * glue = "";
+   char * s = implode(strArr, len, glue);
+   // s is "he\nuring es"
+   (pass.)
+
+test 18 :: implode(...)
+
+   int len = 1
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("");
+   const char * glue = "Z";
+   char * s = implode(strArr, len, glue);
+   // s is ""
+   (pass.)
+
+test 19 :: implode(...)
+
+   int len = 1
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("");
+   const char * glue = "";
+   char * s = implode(strArr, len, glue);
+   // s is ""
+   (pass.)
+
+test 20 :: implode(...)
+
+   int len = 25
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("The");
+   strArr[1] = strdup("more");
+   strArr[2] = strdup("that");
+   strArr[3] = strdup("you");
+   strArr[4] = strdup("read");
+   strArr[5] = strdup("");
+   strArr[6] = strdup("the");
+   strArr[7] = strdup("more");
+   strArr[8] = strdup("things");
+   strArr[9] = strdup("you");
+   strArr[10] = strdup("will");
+   strArr[11] = strdup("know");
+   strArr[12] = strdup("");
+   strArr[13] = strdup("The");
+   strArr[14] = strdup("more");
+   strArr[15] = strdup("that");
+   strArr[16] = strdup("you");
+   strArr[17] = strdup("learn");
+   strArr[18] = strdup("");
+   strArr[19] = strdup("the");
+   strArr[20] = strdup("more");
+   strArr[21] = strdup("places");
+   strArr[22] = strdup("you\'ll");
+   strArr[23] = strdup("go");
+   strArr[24] = strdup("");
+   const char * glue = " -- ";
+   char * s = implode(strArr, len, glue);
+   // s is "The -- more -- that -- you -- read --  -- the -- more -- things -- you -- will -- know --  -- The -- more -- that -- you -- learn --  -- the -- more -- places -- you\'ll -- go -- "
+   (pass.)
+
+test 21 :: implode(...)
+
+   int len = 35
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("Twas brillig, and the slithy toves");
+   strArr[1] = strdup("Did gyre and gimble in the wabe:");
+   strArr[2] = strdup("All mimsy were the borogoves,");
+   strArr[3] = strdup("And the mome raths outgrabe.");
+   strArr[4] = strdup("");
+   strArr[5] = strdup("Beware the Jabberwock, my son!");
+   strArr[6] = strdup("The jaws that bite, the claws that catch!");
+   strArr[7] = strdup("Beware the Jubjub bird, and shun");
+   strArr[8] = strdup("The frumious Bandersnatch!");
+   strArr[9] = strdup("");
+   strArr[10] = strdup("He took his vorpal sword in hand:");
+   strArr[11] = strdup("Long time the manxome foe he sought --");
+   strArr[12] = strdup("So rested he by the Tumtum tree,");
+   strArr[13] = strdup("And stood awhile in thought.");
+   strArr[14] = strdup("");
+   strArr[15] = strdup("And, as in uffish thought he stood,");
+   strArr[16] = strdup("The Jabberwock, with eyes of flame,");
+   strArr[17] = strdup("Came whiffling through the tulgey wood,");
+   strArr[18] = strdup("And burbled as it came!");
+   strArr[19] = strdup("");
+   strArr[20] = strdup("One, two! One, two! And through and through");
+   strArr[21] = strdup("The vorpal blade went snicker-snack!");
+   strArr[22] = strdup("He left it dead, and with its head");
+   strArr[23] = strdup("He went galumphing back.");
+   strArr[24] = strdup("");
+   strArr[25] = strdup("And, has thou slain the Jabberwock?");
+   strArr[26] = strdup("Come to my arms, my beamish boy!");
+   strArr[27] = strdup("O frabjous day! Callooh! Callay!");
+   strArr[28] = strdup("He chortled in his joy.");
+   strArr[29] = strdup("");
+   strArr[30] = strdup("Twas brillig, and the slithy toves");
+   strArr[31] = strdup("Did gyre and gimble in the wabe;");
+   strArr[32] = strdup("All mimsy were the borogoves,");
+   strArr[33] = strdup("And the mome raths outgrabe.");
+   strArr[34] = strdup("");
+   const char * glue = ";\n";
+   char * s = implode(strArr, len, glue);
+   // s is "Twas brillig, and the slithy toves;\nDid gyre and gimble in the wabe:;\nAll mimsy were the borogoves,;\nAnd the mome raths outgrabe.;\n;\nBeware the Jabberwock, my son!;\nThe jaws that bite, the claws that catch!;\nBeware the Jubjub bird, and shun;\nThe frumious Bandersnatch!;\n;\nHe took his vorpal sword in hand:;\nLong time the manxome foe he sought --;\nSo rested he by the Tumtum tree,;\nAnd stood awhile in thought.;\n;\nAnd, as in uffish thought he stood,;\nThe Jabberwock, with eyes of flame,;\nCame whiffling through the tulgey wood,;\nAnd burbled as it came!;\n;\nOne, two! One, two! And through and through;\nThe vorpal blade went snicker-snack!;\nHe left it dead, and with its head;\nHe went galumphing back.;\n;\nAnd, has thou slain the Jabberwock?;\nCome to my arms, my beamish boy!;\nO frabjous day! Callooh! Callay!;\nHe chortled in his joy.;\n;\nTwas brillig, and the slithy toves;\nDid gyre and gimble in the wabe;;\nAll mimsy were the borogoves,;\nAnd the mome raths outgrabe.;\n"
+   (pass.)
+
+test 22 :: implode(...)
+
+   int len = 6
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("1");
+   strArr[1] = strdup("2");
+   strArr[2] = strdup("3");
+   strArr[3] = strdup("4");
+   strArr[4] = strdup("5");
+   strArr[5] = strdup("6");
+   const char * glue = ", ";
+   char * s = implode(strArr, len, glue);
+   // s is "1, 2, 3, 4, 5, 6"
+   (pass.)
+
+test 23 :: sortStringArray(...)
+
+   int len = 3
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("lady");
+   strArr[1] = strdup("beatle");
+   strArr[2] = strdup("brew");
+   sortStringArray(strArr, len);
+   // strArr[0] is "beatle"
+   // strArr[1] is "brew"
+   // strArr[2] is "lady"
+   (pass.)
+
+test 24 :: sortStringArray(...)
+
+   int len = 1
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("");
+   sortStringArray(strArr, len);
+   // strArr[0] is ""
+   (pass.)
+
+test 25 :: sortStringArray(...)
+
+   int len = 35
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("Twas brillig, and the slithy toves");
+   strArr[1] = strdup("Did gyre and gimble in the wabe:");
+   strArr[2] = strdup("All mimsy were the borogoves,");
+   strArr[3] = strdup("And the mome raths outgrabe.");
+   strArr[4] = strdup("");
+   strArr[5] = strdup("Beware the Jabberwock, my son!");
+   strArr[6] = strdup("The jaws that bite, the claws that catch!");
+   strArr[7] = strdup("Beware the Jubjub bird, and shun");
+   strArr[8] = strdup("The frumious Bandersnatch!");
+   strArr[9] = strdup("");
+   strArr[10] = strdup("He took his vorpal sword in hand:");
+   strArr[11] = strdup("Long time the manxome foe he sought --");
+   strArr[12] = strdup("So rested he by the Tumtum tree,");
+   strArr[13] = strdup("And stood awhile in thought.");
+   strArr[14] = strdup("");
+   strArr[15] = strdup("And, as in uffish thought he stood,");
+   strArr[16] = strdup("The Jabberwock, with eyes of flame,");
+   strArr[17] = strdup("Came whiffling through the tulgey wood,");
+   strArr[18] = strdup("And burbled as it came!");
+   strArr[19] = strdup("");
+   strArr[20] = strdup("One, two! One, two! And through and through");
+   strArr[21] = strdup("The vorpal blade went snicker-snack!");
+   strArr[22] = strdup("He left it dead, and with its head");
+   strArr[23] = strdup("He went galumphing back.");
+   strArr[24] = strdup("");
+   strArr[25] = strdup("And, has thou slain the Jabberwock?");
+   strArr[26] = strdup("Come to my arms, my beamish boy!");
+   strArr[27] = strdup("O frabjous day! Callooh! Callay!");
+   strArr[28] = strdup("He chortled in his joy.");
+   strArr[29] = strdup("");
+   strArr[30] = strdup("Twas brillig, and the slithy toves");
+   strArr[31] = strdup("Did gyre and gimble in the wabe;");
+   strArr[32] = strdup("All mimsy were the borogoves,");
+   strArr[33] = strdup("And the mome raths outgrabe.");
+   strArr[34] = strdup("");
+   sortStringArray(strArr, len);
+   // strArr[0] is ""
+   // strArr[1] is ""
+   // strArr[2] is ""
+   // strArr[3] is ""
+   // strArr[4] is ""
+   // strArr[5] is ""
+   // strArr[6] is ""
+   // strArr[7] is "All mimsy were the borogoves,"
+   // strArr[8] is "All mimsy were the borogoves,"
+   // strArr[9] is "And burbled as it came!"
+   // strArr[10] is "And stood awhile in thought."
+   // strArr[11] is "And the mome raths outgrabe."
+   // strArr[12] is "And the mome raths outgrabe."
+   // strArr[13] is "And, as in uffish thought he stood,"
+   // strArr[14] is "And, has thou slain the Jabberwock?"
+   // strArr[15] is "Beware the Jabberwock, my son!"
+   // strArr[16] is "Beware the Jubjub bird, and shun"
+   // strArr[17] is "Came whiffling through the tulgey wood,"
+   // strArr[18] is "Come to my arms, my beamish boy!"
+   // strArr[19] is "Did gyre and gimble in the wabe:"
+   // strArr[20] is "Did gyre and gimble in the wabe;"
+   // strArr[21] is "He chortled in his joy."
+   // strArr[22] is "He left it dead, and with its head"
+   // strArr[23] is "He took his vorpal sword in hand:"
+   // strArr[24] is "He went galumphing back."
+   // strArr[25] is "Long time the manxome foe he sought --"
+   // strArr[26] is "O frabjous day! Callooh! Callay!"
+   // strArr[27] is "One, two! One, two! And through and through"
+   // strArr[28] is "So rested he by the Tumtum tree,"
+   // strArr[29] is "The Jabberwock, with eyes of flame,"
+   // strArr[30] is "The frumious Bandersnatch!"
+   // strArr[31] is "The jaws that bite, the claws that catch!"
+   // strArr[32] is "The vorpal blade went snicker-snack!"
+   // strArr[33] is "Twas brillig, and the slithy toves"
+   // strArr[34] is "Twas brillig, and the slithy toves"
+   (pass.)
+
+test 26 :: sortStringCharacters(...)
+
+   char * s1 = strdup("The more that you read, the more things you will know. The more that you learn, the more places you\'ll go.");
+   sortStringCharacters(s1)
+   // s1 is now "                    \',,..TTaaaaacdeeeeeeeeeeegghhhhhhhiikllllllmmmmnnnooooooooooprrrrrrsstttttttuuuuwwyyyy"
+
+test 27 :: sortStringCharacters(...)
+
+   char * s1 = strdup("How did it get so late so soon?");
+   sortStringCharacters(s1)
+   // s1 is now "       ?Haddeegiilnooooossstttw"
+
+test 28 :: sortStringCharacters(...)
+
+   char * s1 = strdup("Twas brillig, and the slithy toves\nDid gyre and gimble in the wabe:\nAll mimsy were the borogoves,\nAnd the mome raths outgrabe.\n\nBeware the Jabberwock, my son!\nThe jaws that bite, the claws that catch!\nBeware the Jubjub bird, and shun\nThe frumious Bandersnatch!\n\nHe took his vorpal sword in hand:\nLong time the manxome foe he sought --\nSo rested he by the Tumtum tree,\nAnd stood awhile in thought.\n\nAnd, as in uffish thought he stood,\nThe Jabberwock, with eyes of flame,\nCame whiffling through the tulgey wood,\nAnd burbled as it came!\n\nOne, two! One, two! And through and through\nThe vorpal blade went snicker-snack!\nHe left it dead, and with its head\nHe went galumphing back.\n\nAnd, has thou slain the Jabberwock?\nCome to my arms, my beamish boy!\nO frabjous day! Callooh! Callay!\nHe chortled in his joy.\n\nTwas brillig, and the slithy toves\nDid gyre and gimble in the wabe;\nAll mimsy were the borogoves,\nAnd the mome raths outgrabe.\n");
+   sortStringCharacters(s1)
+   // s1 is now "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                                                                                           !!!!!!!!!!!,,,,,,,,,,,,,,,,,,---.....::;?AAAAAAAAABBBCCCCDDHHHHJJJJLOOOSTTTTTTTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccdddddddddddddddddddddddddddddddeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffffffffffggggggggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiijjjjkkkkkkklllllllllllllllllllllllllllllmmmmmmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnooooooooooooooooooooooooooooooooooooooooooooooooooppprrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrssssssssssssssssssssssssssssssssssssstttttttttttttttttttttttttttttttttttttttttttttttttttttttttttuuuuuuuuuuuuuuuuuuuuuvvvvvvwwwwwwwwwwwwwwwwwwwwwwwxyyyyyyyyyyyyyyyy"
+
+test 29 :: sortStringCharacters(...)
+
+   char * s1 = strdup("");
+   sortStringCharacters(s1)
+   // s1 is now ""
+
+test 30 :: destroyStringArray(...)
+
+   int len = 3
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("lady");
+   strArr[1] = strdup("beatle");
+   strArr[2] = strdup("brew");
+   destroyStringArray(strArr, len);
+   // Pass conditional on no memory errors
+
+test 31 :: destroyStringArray(...)
+
+   int len = 1
+   char * * strArr = malloc(len * sizeof(char*));
+   strArr[0] = strdup("");
+   destroyStringArray(strArr, len);
+   // Pass conditional on no memory errors
+
+test 32 :: destroyStringArray(...)
+
+   destroyStringArray(NULL, 0);
+   // Pass conditional on no memory errors
+
+
+32/32 testcases passed.
+Overall mark is a PASS.

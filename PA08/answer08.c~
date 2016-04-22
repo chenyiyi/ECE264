@@ -1,0 +1,104 @@
+#include "answer08.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+List * List_createNode(const char * str)
+{
+  List * nd = malloc(sizeof(List));
+  nd -> str = strdup(str);
+  nd -> next = NULL;
+}
+
+void List_destroy(List * list)
+{
+  while(list != NULL){
+    List * node = list -> next;
+    free(list);
+    list = node;
+  }
+}
+
+int List_length(List * list)
+{
+  int len1 =0 ; 
+  List *ptr = list;
+  while(ptr != NULL){
+    len1 ++;
+    ptr = ptr->next;
+      }
+  return (len1);
+}
+
+List * List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char*))
+{
+  List *write_node;
+  List *ptr;
+  if(lhs != NULL && rhs != NULL)
+    {
+      int cmp = compar(lhs->str,rhs->str);
+      if(cmp <= 0){
+	write_node = lhs;
+      }
+      else{
+	write_node = rhs;
+      }
+      ptr = write_node->next;
+      lhs = lhs->next;
+      rhs = rhs->next;
+    }
+  while(lhs != NULL && rhs != NULL)
+    {
+      int cmp = compar(lhs->str,rhs->str);
+      if(cmp <= 0){
+	ptr = lhs;
+      }
+      else{
+	ptr = rhs;
+      }
+      ptr = ptr->next;
+      lhs = lhs->next;
+      rhs = rhs->next;
+    }
+  if(lhs != NULL){
+    ptr = lhs;
+  }
+  if(rhs != NULL){
+    ptr = rhs;
+  }
+}
+
+List * List_sort(List * list, int (*compar)(const char *, const char*))
+{
+  int length;
+  List * ptr1;
+  List * ptr2;
+  length = List_length(list);
+  int ind =1;
+  if(length <=1)
+    {
+      return(list);
+    }
+  int leftlength = length/2;
+  int rightlength = length - leftlength;
+  List *left = malloc(sizeof(List)*leftlength);
+  List *right = malloc(sizeof(List)*rightlength);
+  ptr1 = list;
+  while(ind != leftlength)
+    {
+      ptr1 = ptr1 ->next;
+      ind ++;
+    }
+  ptr2 = ptr->next;
+  ptr1->next = NULL;
+  left = ptr1;
+  right = ptr2;
+  List_merge(left, right, compar);
+
+}
+
+
+
+
+
+

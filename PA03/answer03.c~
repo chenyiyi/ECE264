@@ -1,0 +1,105 @@
+#include<stdlib.h>
+#include<string.h>
+int compareA(char * *arrA, char * *arrB);
+int compareB(char * arrA, char * arrB);
+
+char * strcat_ex(char * * dest, int * n, const char * src)
+{
+  char * str;
+  if((* dest =='\0') || (* n < strlen((* dest) + strlen(src))))
+    {
+      * n = 1 + 2 * (strlen(* dest) + strlen(src));
+      str = (char *) malloc (* n);
+      strcpy(str, *dest);
+      strcat(str, src);
+      free(* dest);
+      * dest = & str[0];
+      return(* dest);
+    }
+  else
+    {
+      strcpy(* dest, src);
+      return(* dest);
+    }
+}
+      
+char * * explode(const char * str, const char * delims, int * arrlen)
+{
+  int N=0;
+  int ind;
+  int num;
+  int arrInd = 0;
+  int last = 0;
+  for(ind = 0; str[ind] != '\0'; ind++)
+    {
+      if (strchr(delims, str[ind]) != NULL)
+	{
+	  N++;
+	}
+    }
+  char * * strArr = malloc((N+1) * sizeof(char *));
+  for(num = 0; str[num] != '\0'; num++)
+    {
+      while (strchr(delims, str[num]) != NULL)
+	{
+	  strArr[arrInd] = malloc((num-last+1)* sizeof(char *));
+	  memcpy(strArr[arrInd], str+last, ind-last+1);
+	  *(strArr[arrInd] + ind + 1) = '\0';
+	  last = ind +1;
+	  arrInd++;
+	}
+    }
+  strArr[arrInd] = malloc((strlen(str) - last+1) * sizeof(char *));
+  memcpy(strArr[arrInd], str+last, ind-last+1);
+  * arrlen = N+1;
+
+  return strArr;
+}
+
+char * implode(char * * strArr, int len, const char * glue)
+{
+  int num = 0;
+  int ind;
+  char *str = malloc (((strlen(strArr[0])+1))* sizeof(char *));
+  memcpy(str, strArr[0], strlen(strArr[0])+1);
+  for(ind = 1; strArr[ind] != 0; ind++)
+    {
+      strcat_ex(&str, &num, strArr[ind]);
+      strcat_ex(&str, &num, glue);
+    }
+  return str;
+}
+
+int compareA(char * *arrA, char * *arrB)
+{
+  return(strcmp(*arrA, *arrB));
+}
+
+
+void sortStringArray(char * * arrString, int len)
+{
+  qsort(arrString, len, sizeof(char *), compareA);
+}
+
+int compareB(char * arrA, char * arrB)
+{
+  return(arrA - arrB);
+}
+
+void sortStringCharacters(char * str)
+{
+  qsort(str, strlen(str), sizeof(char), compareB);
+}
+
+void destroyStringArray(char * * strArr, int len)
+{
+  int num;
+  for(num =0; num<len; num++)
+    {
+      free(strArr[num]);
+    }
+  free(strArr);
+
+}
+
+

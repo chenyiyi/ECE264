@@ -1,0 +1,166 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "answer09.h"
+
+BusinessNode * create_node(char * stars, char * name, char * address)
+{
+	BusinessNode * tn;
+	tn = malloc(sizeof(BusinessNode));
+	tn -> left = NULL;
+	tn -> right = NULL;
+	tn -> name = name;
+	tn -> stars = stars;
+	tn -> address = address;
+	
+	return (tn);
+}
+
+BusinessNode * tree_insert(BusinessNode * node, BusinessNode * root)
+{
+  if (root == NULL )
+    {
+      return node;
+    }
+  if (strcmp(root -> name, node -> name) == 0 )
+    {
+      root -> left = tree_insert (node, root -> left);
+    }
+  if ( strcmp(root -> name, node -> name) > 0 )
+    {
+      root -> left = tree_insert (node, root -> left);
+    }
+  else
+    {
+      root -> right = tree_insert (node, root -> right);
+    }
+  return root;
+}
+
+BusinessNode * load_tree_from_file(char * filename)
+{
+	FILE * fptr;
+	fptr = fopen(filename, "r");
+	if(fptr == NULL);
+	{
+	  return NULL;
+	}
+	BusinessNode * root;
+	BusinessNode * node;
+	char *buffer = malloc(sizeof(char)* 300);
+	int i = 0;
+	int d = 0;
+	while( fgets(buffer, 300, fptr)!=NULL)
+	{
+	    i = 0;
+	    d = 0;
+	    while(buffer[d] != '\t' )
+	      {
+		d ++;
+	      }
+	    char* stars = malloc(sizeof(char) * (d+1));
+	    d =0;
+	    while(buffer[d] != '\t' )
+	      {
+		stars[i] = buffer[d];
+		i ++;
+		d ++;
+	      }
+	    stars[i] = '\0';
+	    while( buffer[d] ==' ')
+	      {
+		d++;
+	      }
+	    i = d;
+	    while(buffer[d] != '\t' )
+	      {
+		d ++;
+	      }
+	      char* name = malloc(sizeof(char) * (d-i+1));
+	      d =i;
+	      i =0;
+	      while(buffer[d] != '\t' )
+		{
+		  name[i] = buffer[d];
+		  i ++;
+		  d ++;
+		}
+	      name[i] ='\0';
+	      while( buffer[d] ==' ')
+		{
+		  d++;
+		}
+	      i = d;
+	      while(buffer[d] != '\n' )
+		{
+		  d ++;
+		}
+		char* address = malloc(sizeof(char) * (d-i+1));
+		d =i;
+		i =0;
+		while(buffer[d] != '\n' )
+		  {
+		    address[i] = buffer[d];
+		    i ++;
+		    d ++;
+		  }
+		address[i] = '\0';
+		node = create_node(stars, name, address);
+		root = tree_insert(node, root);
+	} 
+	free(buffer);
+	fclose(fptr);
+	return root;		
+}
+
+BusinessNode * tree_search_name(char * name, BusinessNode * root)
+{
+	if (root == NULL )
+	{
+		return NULL ;
+	}
+	if (strcmp (name, root ->name) ==0)
+	{
+		return root;
+	}
+	if ( strcmp (name, root ->name) <0)
+	{
+		return tree_search_name (name, root->left );
+	}
+	return tree_search_name (name, root->right);
+}
+
+void destroy_tree(BusinessNode * root)
+{
+	if(root == NULL)
+	{
+		return;
+	}
+	destroy_tree(root -> left);
+	destroy_tree(root -> right);
+	free(root ->name);
+	free(root ->stars);
+	free(root ->address);
+	free(root);
+	
+}
+
+
+void print_tree(BusinessNode * tree)
+{
+   if (tree == NULL )
+     {
+       return ;
+     }
+   print_tree (tree -> left );
+   printf("%s\n, %s\n, %s\n", tree ->name, tree ->stars, tree->address);
+   print_tree (tree -> right );
+}
+
+
+
+
+
+
+
+
